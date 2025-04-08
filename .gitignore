@@ -34,3 +34,21 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv
+.env
+
+# expo
+.expo-shared/
+
+# build / dist
+build/
+
+# mac / windows
+Thumbs.db
+

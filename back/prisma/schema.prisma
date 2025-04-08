@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Joueur {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  score     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  nom       String
+  createdAt DateTime @default(now())
+
+  // si plus tard tu veux relier des joueurs ou des scores
+  // joueurs     Joueur[]
+}

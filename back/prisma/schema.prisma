@@ -15,12 +15,22 @@ model Joueur {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  nom       String
-  createdAt DateTime @default(now())
+  id       Int    @id @default(autoincrement())
+  nom      String @unique
+  email    String @unique
+  password String
 
-  // si plus tard tu veux relier des joueurs ou des scores
-  // joueurs     Joueur[]
+  friends  Friend[] @relation("UserFriends")
+  friendOf Friend[] @relation("FriendOf")
+}
+
+model Friend {
+  id       Int @id @default(autoincrement())
+  userId   Int
+  friendId Int
+
+  user   User @relation("UserFriends", fields: [userId], references: [id])
+  friend User @relation("FriendOf", fields: [friendId], references: [id])
+
+  @@unique([userId, friendId])
 }

@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
+    const { login } = useAuth();
 
     const handleLogin = async () => {
         setError('');
@@ -34,9 +36,8 @@ export default function Login() {
                 return;
             }
 
-            Alert.alert('Succès', 'Connexion réussie');
-            console.log('Utilisateur connecté :', data.user);
-            router.push('/'); // ou une autre page
+            await login(data.user, data.token);
+            router.push('/');
 
         } catch (err) {
             setError("Erreur serveur. Veuillez réessayer.");

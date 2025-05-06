@@ -1,8 +1,10 @@
-import * as express from 'express';
-import * as cors from 'cors';
+import express from 'express';
+import cors from 'cors';
 import * as dotenv from 'dotenv';
 import joueurRoutes from './routes/joueur.routes';
 import authRoutes from './routes/auth.routes';
+import friendRoutes from './routes/friend.routes';
+import userRoutes from './routes/user.routes';
 
 dotenv.config();
 
@@ -12,6 +14,8 @@ app.use(express.json());
 
 app.use('/api/joueurs', joueurRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/friends', friendRoutes);
+app.use('/api/users', userRoutes);
 
 const PORT:string | 3001 = process.env.PORT || 3001;
 app.listen(PORT, ():void => {

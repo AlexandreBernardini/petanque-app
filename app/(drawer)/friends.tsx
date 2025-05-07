@@ -27,7 +27,7 @@ export default function Friends() {
 
     const fetchFriends = async () => {
         try {
-            const response = await fetch('http://192.168.77.239:3001/api/friends', {
+            const response = await fetch('http://192.168.101.239:3001/api/friends', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -41,7 +41,7 @@ export default function Friends() {
 
     const fetchAllUsers = async () => {
         try {
-            const res = await fetch('http://192.168.77.239:3001/api/users/all', {
+            const res = await fetch('http://192.168.101.239:3001/api/users/all', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -55,7 +55,7 @@ export default function Friends() {
 
     const addFriend = async (name: string) => {
         try {
-            const response = await fetch('http://192.168.77.239:3001/api/friends/add', {
+            const response = await fetch('http://192.168.101.239:3001/api/friends/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

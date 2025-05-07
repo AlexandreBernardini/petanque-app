@@ -5,6 +5,7 @@ import joueurRoutes from './routes/joueur.routes';
 import authRoutes from './routes/auth.routes';
 import friendRoutes from './routes/friend.routes';
 import userRoutes from './routes/user.routes';
+import partieRoutes from './routes/partie.routes';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use('/api/joueurs', joueurRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/friends', friendRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/parties', partieRoutes);
 
 const PORT:string | 3001 = process.env.PORT || 3001;
 app.listen(PORT, ():void => {

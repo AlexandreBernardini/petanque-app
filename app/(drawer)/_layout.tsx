@@ -12,6 +12,7 @@ export default function DrawerLayout() {
         >
             <Drawer.Screen name="tournament" options={{ title: 'Lancer une partie' }} />
             <Drawer.Screen name="friends" options={{ title: 'Mes amis' }} />
+            <Drawer.Screen name="rules" options={{ drawerLabel: 'Règles du jeu' }} />
             <Drawer.Screen name="logout" options={{ title: 'Se déconnecter' }} />
         </Drawer>
     );

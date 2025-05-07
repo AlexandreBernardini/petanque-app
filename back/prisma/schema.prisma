@@ -20,8 +20,11 @@ model User {
   email    String @unique
   password String
 
-  friends  Friend[] @relation("UserFriends")
-  friendOf Friend[] @relation("FriendOf")
+  // relations
+  scores   Score[]
+  parties  JoueurPartie[] // si tu utilises une table pivot JoueurPartie
+  friends  Friend[]       @relation("UserFriends")
+  friendOf Friend[]       @relation("FriendOf")
 }
 
 model Friend {
@@ -33,4 +36,35 @@ model Friend {
   friend User @relation("FriendOf", fields: [friendId], references: [id])
 
   @@unique([userId, friendId])
+}
+
+model Partie {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  joueurs JoueurPartie[]
+  scores  Score[]
+}
+
+model JoueurPartie {
+  id       Int @id @default(autoincrement())
+  userId   Int
+  partieId Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  partie Partie @relation(fields: [partieId], references: [id])
+}
+
+model Score {
+  id        Int      @id @default(autoincrement())
+  points    Int
+  distance  Int
+  atelier   Int
+  createdAt DateTime @default(now())
+
+  // relations
+  userId   Int
+  partieId Int
+  user     User   @relation(fields: [userId], references: [id])
+  partie   Partie @relation(fields: [partieId], references: [id])
 }
